@@ -10,7 +10,7 @@ Caso N°2: "Bike Z"
 ## Descripcion del Problema
 El propietario de Bike Z ha decidido implementar Inteligencia de Negocios a su negocio de ventas de motocross
 ## Objetivo del proyecto
-Presentar una solucion
+Presentar una solucion que permita a los encargados tomar mejores desiciones respecto a su negocio de motocross
 ## KPI definidos
 ## Modelo Dimensional
 ## Proceso de negocio
