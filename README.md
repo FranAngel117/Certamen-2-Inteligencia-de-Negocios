@@ -18,7 +18,7 @@ Presentar una solucion que permita a los encargados tomar mejores desiciones res
 - Tiempo de envio: Promedio(fecha envío-fecha)
 - Ventas por vendedor:  Suma(Total Venta) 
 ## Modelo Dimensional
-Modelo dimensional tipo estrella
+Para el Data Warehouse BikeZ_DW se eligió un modelo dimensional en estrella para facilitar las consultas analíticas y la generación de reportes de negocio. El diseño centraliza las métricas del proceso de ventas en una tabla de hechos (FactVentas), la cual se conecta directamente a sus dimensiones descriptivas (DimCliente, DimProducto, DimEmpleado, DimTerritorio y DimTiempo) mediante claves sustitutas, simplificando las uniones y optimizando el rendimiento de la información histórica.
 ## Proceso de negocio
 La venta de articulos de motocross
 ## Granularidad
