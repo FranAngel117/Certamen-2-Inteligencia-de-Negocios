@@ -45,7 +45,6 @@ Una fila dentro del dataset representa un registro de una venta que es el nivel 
 *   **Entorno de Desarrollo (IDE):** Visual Studio Community — Plataforma base utilizada para centralizar y administrar el proyecto institucional de Business Intelligence.
 *   **Herramienta de Integración (ETL):** Microsoft Data Tools Integration Services (SSIS) — Extensión de desarrollo especializada utilizada para diseñar, construir y ejecutar el paquete de flujo de control y las transformaciones secuenciales ETL_FactVentas.dtsx.
 *   **Control de Versiones:** GitHub / GitHub Desktop — Herramientas utilizadas para el control de versiones del código y componentes del paquete de integración, asegurando el registro de la colaboración individual de los integrantes del equipo.
-*   **Documentación:** Markdown (.md) — Lenguaje de marcado utilizado para estructurar de forma limpia la bitácora de validaciones y las especificaciones del proyecto.
 ## Estructura del repositorio
 ## Instrucciones de ejecución/revisión
 ## Distribucion de responsabilidades y aportes
