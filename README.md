@@ -40,6 +40,11 @@ Una fila dentro del dataset representa un registro de una venta que es el nivel 
 ## Proceso ETL - Fase 1
 ## Cubo OLAP - Fase 2
 ## Tecnologias utilizadas
+*   **Motor de Base de Datos:** `SQL Server 2019 Developer Edition` — Motor principal utilizado para alojar la base de datos transaccional original (`BikeZ`) y dar soporte físico a las tablas del Data Warehouse (`BikeZ_DW`).
+*   **Gestor de Base de Datos:** `SQL Server Management Studio (SSMS)` — Entorno gráfico integrado para la administración de la infraestructura de datos, diseño de diagramas, ejecución de scripts de creación (`.sql`) y desarrollo de las consultas de auditoría de calidad.
+*   **Entorno de Desarrollo (IDE):** `Visual Studio Community` — Plataforma base utilizada para centralizar y administrar el proyecto institucional de Business Intelligence.
+*   **Herramienta de Integración (ETL):** `Microsoft Data Tools Integration Services (SSIS)` — Extensión de desarrollo especializada utilizada para diseñar, construir y ejecutar el paquete de flujo de control y las transformaciones secuenciales (`ETL_FactVentas.dtsx`).
+*   **Control de Versiones:** `GitHub / GitHub Desktop` — Herramientas utilizadas para el control de versiones del código y componentes XML del paquete de integración, asegurando el registro de la colaboración individual de los integrantes del equipo.
 ## Estructura del repositorio
 ## Instrucciones de ejecución/revisión
 ## Distribucion de responsabilidades y aportes
