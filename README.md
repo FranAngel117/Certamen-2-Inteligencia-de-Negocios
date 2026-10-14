@@ -52,3 +52,5 @@ Una fila dentro del dataset representa un registro de una venta que es el nivel 
 - Constanza Venegas - Diseñar modelo dimensional, implementar modelo dimensional en SQL server
 - Sebastian Miranda - Construir proceso ETL con SSIS
 - Victor Novoa - Aplicar ttransformaciones y asegurar calidad de datos, Ejecutar y validar ETL
+## Presentacion
+https://canva.link/bftb8zg4qfhcd13
