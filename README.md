@@ -20,7 +20,7 @@ Para el Data Warehouse BikeZ_DW se eligió un modelo dimensional en estrella par
 ## Proceso de negocio
 La venta de articulos de motocross
 ## Granularidad
-Cada fila representa un detalle de venta, no necesariamente una venta completa.
+Cada fila representa un detalle de venta
 ## Dimensiones
 ### DimTiempo: Contiene todo el contexto temporal para las fechas de venta y envío.
 - Atributos: TiempoID (Llave Primaria), Fecha, Anio, Trimestre, Mes, NombreMes, Dia, DiaSemana.
@@ -51,9 +51,9 @@ Disponible en la carpeta "OLAP"
 *   **Entorno de Procesamiento Analítico (OLAP):** SQL Server Analysis Services (SSAS) — Herramienta utilizada para diseñar, implementar y procesar el cubo OLAP, permitiendo analizar la información del Data Warehouse mediante dimensiones, jerarquías y medidas.
 *   **Herramienta de Visualización (BI):** Microsoft Power BI Desktop — Herramienta utilizada para desarrollar dashboards e informes interactivos, representando los indicadores clave de desempeño (KPI) y facilitando el análisis de los resultados del negocio.
 ## Distribucion de responsabilidades y aportes
-- Francisco Javier Angel - Analisis de caso, determinar KPI pertinentes, Aplicar los 4 pasos de Kimball, Creacion del repositorio y aportar al README.md
-- Constanza Venegas - Diseñar modelo dimensional, implementar modelo dimensional en SQL server
-- Sebastian Miranda - Construir proceso ETL con SSIS
-- Victor Novoa - Aplicar ttransformaciones y asegurar calidad de datos, Ejecutar y validar ETL
+- Francisco Javier Angel - Analisis de caso, determinar KPI pertinentes, Aplicar los 4 pasos de Kimball, Creacion del repositorio y aportar al README.md, Construccion del cubo OLAP , Construccion del Dashboard, Armar la Presentacion
+- Constanza Venegas - Diseñar modelo dimensional, implementar modelo dimensional en SQL server, Construccion del cubo OLAP , Construccion del Dashboard,Arreglo de errores del cubo OLAP, Armar la Presentacion
+- Sebastian Miranda - Construir proceso ETL con SSIS, Corregir errores de la fase 1
+- Victor Novoa - Aplicar transformaciones y asegurar calidad de datos, Ejecutar y validar ETL
 ## Presentacion
 https://canva.link/tvwj6xv59nrmm57
