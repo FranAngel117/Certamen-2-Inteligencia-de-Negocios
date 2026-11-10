@@ -38,6 +38,7 @@ Una fila dentro del dataset representa un registro de una venta que es el nivel 
 - Tabla de Hechos: Hechos_Venta
 - Metricas: Cantidad(unidades_vendidas), PrecioUnitario(se usa para calculos), Total_Venta(cantidad*PrecioUnitario), Costo_envio(si se aplica)
 ## Proceso ETL - Fase 1
+Disponible en la carpeta "etl"
 ## Cubo OLAP - Fase 2
 ## Tecnologias utilizadas
 *   **Motor de Base de Datos:** SQL Server 2019 Developer Edition — Motor principal utilizado para alojar la base de datos transaccional original BikeZ y dar soporte físico a las tablas del Data Warehouse BikeZ_DW.
