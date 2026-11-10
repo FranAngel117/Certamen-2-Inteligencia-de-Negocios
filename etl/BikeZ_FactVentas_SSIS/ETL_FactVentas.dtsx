@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="ETL_FactVentas"
   DTS:PackageType="5"
-  DTS:VersionBuild="17"
-  DTS:VersionGUID="{254BE1AF-2149-4B1E-B56A-E1890247F593}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{B940B835-AC52-455C-A81B-C7FC55168DB6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -82,7 +82,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -290,13 +290,13 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DimCliente]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimCliente]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DimCliente]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimCliente]) [refTable]
 where [refTable].[ClienteID] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -435,6 +435,163 @@ where [refTable].[ClienteID] = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup_Existencia_FactVentas"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactVentas]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactVentas]) [refTable]
+where [refTable].[VentaID] = ? and [refTable].[DetalleVentaID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VentaID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DetalleVentaID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FechaVentaID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FechaEnvioID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ClienteKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductoKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VendedorKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TerritorioKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Cantidad" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PrecioUnitario" dataType="DT_NUMERIC" length="0" precision="19" scale="4" codePage="0"/&gt;&lt;referenceColumn name="MontoTotal" dataType="DT_NUMERIC" length="0" precision="19" scale="4" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ.Outputs[OLE DB Source Output].Columns[VentaID]};#{Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ.Outputs[OLE DB Source Output].Columns[DetalleVentaID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.BikeZ_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.BikeZ_DW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Inputs[Lookup Input].Columns[VentaID]"
+                      cachedDataType="i4"
+                      cachedName="VentaID"
+                      lineageId="Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ.Outputs[OLE DB Source Output].Columns[VentaID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VentaID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Inputs[Lookup Input].Columns[DetalleVentaID]"
+                      cachedDataType="i4"
+                      cachedName="DetalleVentaID"
+                      lineageId="Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ.Outputs[OLE DB Source Output].Columns[DetalleVentaID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DetalleVentaID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\DFT_Cargar_FactVentas\Lookup_FechaEnvio"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -448,7 +605,7 @@ where [refTable].[ClienteID] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     TiempoID,
     CAST(Fecha AS DATETIME) AS Fecha
 FROM dbo.DimTiempo;</property>
@@ -457,7 +614,7 @@ FROM dbo.DimTiempo;</property>
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
     TiempoID,
     CAST(Fecha AS DATETIME) AS Fecha
 FROM dbo.DimTiempo;) [refTable]
@@ -612,13 +769,13 @@ where [refTable].[Fecha] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DimTiempo]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimTiempo]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DimTiempo]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimTiempo]) [refTable]
 where [refTable].[Fecha] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -770,13 +927,13 @@ where [refTable].[Fecha] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DimProducto]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimProducto]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DimProducto]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimProducto]) [refTable]
 where [refTable].[ProductoID] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -928,13 +1085,13 @@ where [refTable].[ProductoID] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DimTerritorio]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimTerritorio]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DimTerritorio]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimTerritorio]) [refTable]
 where [refTable].[TerritorioID] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1086,13 +1243,13 @@ where [refTable].[TerritorioID] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DimEmpleado]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimEmpleado]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DimEmpleado]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimEmpleado]) [refTable]
 where [refTable].[EmpleadoID] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1255,7 +1412,7 @@ where [refTable].[EmpleadoID] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     V.VentaID,
     D.DetalleVentaID,
     CAST(V.Fecha AS DATE) AS FechaVenta,
@@ -1575,8 +1732,13 @@ INNER JOIN dbo.DetalleVentas AS D
               name="Lookup Match Output"
               startId="Package\DFT_Cargar_FactVentas\Lookup_Territorio.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\DFT_Cargar_FactVentas.Paths[OLE DB Source Output]"
+              refId="Package\DFT_Cargar_FactVentas.Paths[Lookup No Match Output]"
               endId="Package\DFT_Cargar_FactVentas\Lookup_FechaVenta.Inputs[Lookup Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT_Cargar_FactVentas.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ.Outputs[OLE DB Source Output]" />
           </paths>
@@ -1607,56 +1769,222 @@ INNER JOIN dbo.DetalleVentas AS D
     design-time-name="Package\DFT_Cargar_FactVentas">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="179,43"
+          Id="Package\DFT_Cargar_FactVentas\Lookup_FechaEnvio"
+          TopLeft="422,218" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\DFT_Cargar_FactVentas\Lookup_Producto"
+          TopLeft="682,386" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\DFT_Cargar_FactVentas\Lookup_Vendedor"
+          TopLeft="816,467" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DFT_Cargar_FactVentas\Lookup_Cliente"
+          TopLeft="528,298" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\DFT_Cargar_FactVentas\Lookup_FechaVenta"
+          TopLeft="295,135" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\DFT_Cargar_FactVentas\Lookup_Territorio"
+          TopLeft="946,554" />
         <NodeLayout
           Size="187,42"
           Id="Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ"
           TopLeft="26,22" />
         <NodeLayout
-          Size="180,42"
-          Id="Package\DFT_Cargar_FactVentas\Lookup_FechaVenta"
-          TopLeft="113,94" />
+          Size="178,42"
+          Id="Package\DFT_Cargar_FactVentas\Destino_FactVentas"
+          TopLeft="1061,638" />
         <EdgeLayout
-          Id="Package\DFT_Cargar_FactVentas.Paths[OLE DB Source Output]"
-          TopLeft="119.5,64">
+          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output5]"
+          TopLeft="1028.5,596">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="83.5,30"
+              EndConnector="121.5,42"
               Start="0,0"
-              End="83.5,22.5">
+              End="121.5,34.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11" />
+                    End="0,17" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11"
-                    Point2="0,15"
-                    Point3="4,15" />
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="4,21" />
                   <mssgle:LineSegment
-                    End="79.5,15" />
+                    End="117.5,21" />
                   <mssgle:CubicBezierSegment
-                    Point1="79.5,15"
-                    Point2="83.5,15"
-                    Point3="83.5,19" />
+                    Point1="117.5,21"
+                    Point2="121.5,21"
+                    Point3="121.5,25" />
                   <mssgle:LineSegment
-                    End="83.5,22.5" />
+                    End="121.5,34.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="12.55861328125,26,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="179,42"
-          Id="Package\DFT_Cargar_FactVentas\Lookup_FechaEnvio"
-          TopLeft="240,177" />
+        <EdgeLayout
+          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output4]"
+          TopLeft="900.5,509">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="128,45"
+              Start="0,0"
+              End="128,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="4,22.5" />
+                  <mssgle:LineSegment
+                    End="124,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="124,22.5"
+                    Point2="128,22.5"
+                    Point3="128,26.5" />
+                  <mssgle:LineSegment
+                    End="128,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="15.80861328125,27.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output3]"
+          TopLeft="764.5,428">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="136,39"
+              Start="0,0"
+              End="136,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="4,19.5" />
+                  <mssgle:LineSegment
+                    End="132,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="132,19.5"
+                    Point2="136,19.5"
+                    Point3="136,23.5" />
+                  <mssgle:LineSegment
+                    End="136,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="19.80861328125,24.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output2]"
+          TopLeft="606,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="158.5,46"
+              Start="0,0"
+              End="158.5,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
+                  <mssgle:LineSegment
+                    End="154.5,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="154.5,23"
+                    Point2="158.5,23"
+                    Point3="158.5,27" />
+                  <mssgle:LineSegment
+                    End="158.5,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="31.05861328125,28,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output1]"
+          TopLeft="511.5,261">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94.5,37"
+              Start="0,0"
+              End="94.5,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5"
+                    Point2="0,18.5"
+                    Point3="4,18.5" />
+                  <mssgle:LineSegment
+                    End="90.5,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90.5,18.5"
+                    Point2="94.5,18.5"
+                    Point3="94.5,22.5" />
+                  <mssgle:LineSegment
+                    End="94.5,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-0.941386718750003,23.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output]"
-          TopLeft="203,136">
+          TopLeft="385,177">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1691,202 +2019,52 @@ INNER JOIN dbo.DetalleVentas AS D
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="156,42"
-          Id="Package\DFT_Cargar_FactVentas\Lookup_Cliente"
-          TopLeft="346,257" />
+          Size="223,42"
+          Id="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas"
+          TopLeft="270,23" />
         <EdgeLayout
-          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output1]"
-          TopLeft="329.5,219">
+          Id="Package\DFT_Cargar_FactVentas.Paths[OLE DB Source Output]"
+          TopLeft="213,43.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="94.5,38"
+              EndConnector="57,0"
               Start="0,0"
-              End="94.5,30.5">
+              End="49.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15"
-                    Point2="0,19"
-                    Point3="4,19" />
-                  <mssgle:LineSegment
-                    End="90.5,19" />
-                  <mssgle:CubicBezierSegment
-                    Point1="90.5,19"
-                    Point2="94.5,19"
-                    Point3="94.5,23" />
-                  <mssgle:LineSegment
-                    End="94.5,30.5" />
+                    End="49.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-0.941386718750003,24,96.3827734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="165,42"
-          Id="Package\DFT_Cargar_FactVentas\Lookup_Producto"
-          TopLeft="500,345" />
         <EdgeLayout
-          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output2]"
-          TopLeft="424,299">
+          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup No Match Output]"
+          TopLeft="383.25,65">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="158.5,46"
+              EndConnector="0,70"
               Start="0,0"
-              End="158.5,38.5">
+              End="0,62.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19"
-                    Point2="0,23"
-                    Point3="4,23" />
-                  <mssgle:LineSegment
-                    End="154.5,23" />
-                  <mssgle:CubicBezierSegment
-                    Point1="154.5,23"
-                    Point2="158.5,23"
-                    Point3="158.5,27" />
-                  <mssgle:LineSegment
-                    End="158.5,38.5" />
+                    End="0,62.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="31.05861328125,28,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="169,42"
-          Id="Package\DFT_Cargar_FactVentas\Lookup_Vendedor"
-          TopLeft="634,426" />
-        <EdgeLayout
-          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output3]"
-          TopLeft="582.5,387">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="136,39"
-              Start="0,0"
-              End="136,31.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.5"
-                    Point2="0,19.5"
-                    Point3="4,19.5" />
-                  <mssgle:LineSegment
-                    End="132,19.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="132,19.5"
-                    Point2="136,19.5"
-                    Point3="136,23.5" />
-                  <mssgle:LineSegment
-                    End="136,31.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="19.80861328125,24.5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="165,42"
-          Id="Package\DFT_Cargar_FactVentas\Lookup_Territorio"
-          TopLeft="764,513" />
-        <EdgeLayout
-          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output4]"
-          TopLeft="718.5,468">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="128,45"
-              Start="0,0"
-              End="128,37.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18.5"
-                    Point2="0,22.5"
-                    Point3="4,22.5" />
-                  <mssgle:LineSegment
-                    End="124,22.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="124,22.5"
-                    Point2="128,22.5"
-                    Point3="128,26.5" />
-                  <mssgle:LineSegment
-                    End="128,37.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="15.80861328125,27.5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="178,42"
-          Id="Package\DFT_Cargar_FactVentas\Destino_FactVentas"
-          TopLeft="879,597" />
-        <EdgeLayout
-          Id="Package\DFT_Cargar_FactVentas.Paths[Lookup Match Output5]"
-          TopLeft="846.5,555">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="121.5,42"
-              Start="0,0"
-              End="121.5,34.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17"
-                    Point2="0,21"
-                    Point3="4,21" />
-                  <mssgle:LineSegment
-                    End="117.5,21" />
-                  <mssgle:CubicBezierSegment
-                    Point1="117.5,21"
-                    Point2="121.5,21"
-                    Point3="121.5,25" />
-                  <mssgle:LineSegment
-                    End="121.5,34.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="12.55861328125,26,96.3827734375,11.609375"
+              BoundingBox="-55.80638671875,25.4453125,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1894,43 +2072,12 @@ INNER JOIN dbo.DetalleVentas AS D
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Cargar_FactVentas\Lookup_FechaVenta">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimTiempo]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\DFT_Cargar_FactVentas\Lookup_FechaEnvio">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1940,30 +2087,7 @@ INNER JOIN dbo.DetalleVentas AS D
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Cargar_FactVentas\Lookup_Cliente">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimCliente]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1976,7 +2100,7 @@ INNER JOIN dbo.DetalleVentas AS D
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1986,7 +2110,7 @@ INNER JOIN dbo.DetalleVentas AS D
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1999,7 +2123,7 @@ INNER JOIN dbo.DetalleVentas AS D
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2009,7 +2133,53 @@ INNER JOIN dbo.DetalleVentas AS D
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Cargar_FactVentas\Lookup_Cliente">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimCliente]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Cargar_FactVentas\Lookup_FechaVenta">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimTiempo]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2022,7 +2192,7 @@ INNER JOIN dbo.DetalleVentas AS D
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2032,8 +2202,16 @@ INNER JOIN dbo.DetalleVentas AS D
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Cargar_FactVentas\Origen_Ventas_BikeZ">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -2049,6 +2227,29 @@ INNER JOIN dbo.DetalleVentas AS D
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Cargar_FactVentas\Lookup_Existencia_FactVentas">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactVentas]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
