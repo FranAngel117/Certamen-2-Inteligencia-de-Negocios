@@ -1,7 +1,7 @@
 # Certamen 2 (Fase 2) - Inteligencia de Negocios
 
 ## Caso Seleccionado
-Caso N°2: "Bike Z"
+Caso N°2: "Bike Z" .
 ## Integrantes y Seccion
 - Francisco Javier Angel (300)
 - Constanza Venegas      (300)
@@ -13,16 +13,14 @@ El propietario de Bike Z ha decidido implementar Inteligencia de Negocios a su n
 Presentar una solucion que permita a los encargados tomar mejores desiciones respecto a su negocio de motocross
 ## KPI definidos
 - Ingresos por territorio: Suma(cantidad*precio unitario)
-- Ticket Promedio: Suma(total venta) / conteo(ventas)
 - Top Productos: Suma(cantidad) agrupados por productos
-- Tiempo de envio: Promedio(fecha envío-fecha)
 - Ventas por vendedor:  Suma(Total Venta) 
 ## Modelo Dimensional
 Para el Data Warehouse BikeZ_DW se eligió un modelo dimensional en estrella para facilitar las consultas analíticas y la generación de reportes de negocio. El diseño centraliza las métricas del proceso de ventas en una tabla de hechos (FactVentas), la cual se conecta directamente a sus dimensiones descriptivas (DimCliente, DimProducto, DimEmpleado, DimTerritorio y DimTiempo) mediante claves sustitutas, simplificando las uniones y optimizando el rendimiento de la información histórica.
 ## Proceso de negocio
 La venta de articulos de motocross
 ## Granularidad
-Una fila dentro del dataset representa un registro de una venta que es el nivel mas bajo posible, cosa que nos permite por venta individual y no por venta total
+Cada fila representa un detalle de venta, no necesariamente una venta completa.
 ## Dimensiones
 ### DimTiempo: Contiene todo el contexto temporal para las fechas de venta y envío.
 - Atributos: TiempoID (Llave Primaria), Fecha, Anio, Trimestre, Mes, NombreMes, Dia, DiaSemana.
@@ -35,8 +33,11 @@ Una fila dentro del dataset representa un registro de una venta que es el nivel 
 ### DimTerritorio: Denormaliza la estructura geográfica, unificando los datos de territorios, grupos y países en una sola dimensión perimetral.
 - Atributos: TerritorioKey (Llave Primaria), TerritorioID, Territorio, Pais, Grupo.
 ## Tabla de hechos y medidas
-- Tabla de Hechos: Hechos_Venta
-- Metricas: Cantidad(unidades_vendidas), PrecioUnitario(se usa para calculos), Total_Venta(cantidad*PrecioUnitario), Costo_envio(si se aplica)
+- Tabla de Hechos: FactsVenta
+- Cantidad: número de unidades vendidas.
+- Precio Unitario: precio registrado para cada producto.
+- Monto Total: importe generado por las ventas.
+- Recuento Fact Ventas: cantidad de registros de detalle de ventas.
 ## Proceso ETL - Fase 1
 Disponible en la carpeta "etl"
 ## Cubo OLAP - Fase 2
@@ -47,6 +48,8 @@ Disponible en la carpeta "OLAP"
 *   **Entorno de Desarrollo (IDE):** Visual Studio Community — Plataforma base utilizada para centralizar y administrar el proyecto institucional de Business Intelligence.
 *   **Herramienta de Integración (ETL):** Microsoft Data Tools Integration Services (SSIS) — Extensión de desarrollo especializada utilizada para diseñar, construir y ejecutar el paquete de flujo de control y las transformaciones secuenciales ETL_FactVentas.dtsx.
 *   **Control de Versiones:** GitHub / GitHub Desktop — Herramientas utilizadas para el control de versiones del código y componentes del paquete de integración, asegurando el registro de la colaboración individual de los integrantes del equipo.
+*   **Entorno de Procesamiento Analítico (OLAP):** SQL Server Analysis Services (SSAS) — Herramienta utilizada para diseñar, implementar y procesar el cubo OLAP, permitiendo analizar la información del Data Warehouse mediante dimensiones, jerarquías y medidas.
+*   **Herramienta de Visualización (BI):** Microsoft Power BI Desktop — Herramienta utilizada para desarrollar dashboards e informes interactivos, representando los indicadores clave de desempeño (KPI) y facilitando el análisis de los resultados del negocio.
 ## Distribucion de responsabilidades y aportes
 - Francisco Javier Angel - Analisis de caso, determinar KPI pertinentes, Aplicar los 4 pasos de Kimball, Creacion del repositorio y aportar al README.md
 - Constanza Venegas - Diseñar modelo dimensional, implementar modelo dimensional en SQL server
